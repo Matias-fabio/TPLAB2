@@ -1,0 +1,83 @@
+# depslib dependency file v1.0
+1721768293 source:c:\users\matia\desktop\files\labfinal\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"funcionesGlobales.h"
+	"fecha.h"
+	"jugador.h"
+	"menuJugadores.h"
+	"deporte.h"
+	"MenuDeportes.h"
+	"equipo.h"
+	"menuEquipos.h"
+	"tipoDeporte.h"
+	"menuTipoDeporte.h"
+	"menuReportes.h"
+	"menuConfiguracion.h"
+
+1721067735 c:\users\matia\desktop\files\labfinal\funcionesglobales.h
+
+1721068559 c:\users\matia\desktop\files\labfinal\fecha.h
+
+1721070971 c:\users\matia\desktop\files\labfinal\jugador.h
+
+1721598028 c:\users\matia\desktop\files\labfinal\menujugadores.h
+
+1721792407 c:\users\matia\desktop\files\labfinal\deporte.h
+
+1721792421 c:\users\matia\desktop\files\labfinal\menudeportes.h
+
+1721768295 c:\users\matia\desktop\files\labfinal\menuconfiguracion.h
+
+1721861706 c:\users\matia\desktop\files\labfinal\menureportes.h
+
+1721598328 c:\users\matia\desktop\files\labfinal\equipo.h
+
+1721789880 c:\users\matia\desktop\files\labfinal\menuequipos.h
+
+1721767456 c:\users\matia\desktop\files\labfinal\tipodeporte.h
+
+1721790405 c:\users\matia\desktop\files\labfinal\menutipodeporte.h
+
+1721768293 source:c:\users\matia\onedrive\escritorio\labfinal\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"funcionesGlobales.h"
+	"fecha.h"
+	"jugador.h"
+	"menuJugadores.h"
+	"deporte.h"
+	"MenuDeportes.h"
+	"equipo.h"
+	"menuEquipos.h"
+	"tipoDeporte.h"
+	"menuTipoDeporte.h"
+	"menuReportes.h"
+	"menuConfiguracion.h"
+
+1721067735 c:\users\matia\onedrive\escritorio\labfinal\funcionesglobales.h
+
+1733586448 c:\users\matia\onedrive\escritorio\labfinal\fecha.h
+
+1733586004 c:\users\matia\onedrive\escritorio\labfinal\jugador.h
+
+1733586047 c:\users\matia\onedrive\escritorio\labfinal\menujugadores.h
+
+1721792407 c:\users\matia\onedrive\escritorio\labfinal\deporte.h
+
+1721792421 c:\users\matia\onedrive\escritorio\labfinal\menudeportes.h
+
+1721598328 c:\users\matia\onedrive\escritorio\labfinal\equipo.h
+
+1721789880 c:\users\matia\onedrive\escritorio\labfinal\menuequipos.h
+
+1721767456 c:\users\matia\onedrive\escritorio\labfinal\tipodeporte.h
+
+1721790405 c:\users\matia\onedrive\escritorio\labfinal\menutipodeporte.h
+
+1721910364 c:\users\matia\onedrive\escritorio\labfinal\menureportes.h
+
+1721914386 c:\users\matia\onedrive\escritorio\labfinal\menuconfiguracion.h
+
