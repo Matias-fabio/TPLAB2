@@ -81,3 +81,44 @@
 
 1721914386 c:\users\matia\onedrive\escritorio\labfinal\menuconfiguracion.h
 
+1721768293 source:c:\users\matia\desktop\tplab2\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"funcionesGlobales.h"
+	"fecha.h"
+	"jugador.h"
+	"menuJugadores.h"
+	"deporte.h"
+	"MenuDeportes.h"
+	"equipo.h"
+	"menuEquipos.h"
+	"tipoDeporte.h"
+	"menuTipoDeporte.h"
+	"menuReportes.h"
+	"menuConfiguracion.h"
+
+1721067735 c:\users\matia\desktop\tplab2\funcionesglobales.h
+
+1733586448 c:\users\matia\desktop\tplab2\fecha.h
+
+1733615457 c:\users\matia\desktop\tplab2\jugador.h
+
+1733601394 c:\users\matia\desktop\tplab2\menujugadores.h
+
+1721792407 c:\users\matia\desktop\tplab2\deporte.h
+
+1721792421 c:\users\matia\desktop\tplab2\menudeportes.h
+
+1721598328 c:\users\matia\desktop\tplab2\equipo.h
+
+1721789880 c:\users\matia\desktop\tplab2\menuequipos.h
+
+1721767456 c:\users\matia\desktop\tplab2\tipodeporte.h
+
+1721790405 c:\users\matia\desktop\tplab2\menutipodeporte.h
+
+1721910364 c:\users\matia\desktop\tplab2\menureportes.h
+
+1721914386 c:\users\matia\desktop\tplab2\menuconfiguracion.h
+

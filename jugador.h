@@ -37,13 +37,19 @@ public:
     void setTelefono( const char* t){strcpy(telefono, t);}
 
     void setClaustro(int cl){
-        if(claustro > 0 && claustro <=4){
+        if(cl > 0 && cl <=4){
             claustro = cl;
+        }
+        else{
+            cout<< "El claustro ingresado no es valido"<<endl;
         }
     }
     void setDeporte(int dep){
-        if(deporte > 0 && deporte <= 10){
+        if(dep > 0 && dep <= 10){
             deporte = dep;
+        }
+        else{
+            cout<< "El deporte ingresado no es valido"<<endl;
         }
     }
     void setNumEquipo(int ne){numEquipo =ne;}
@@ -66,11 +72,26 @@ public:
         } else {
             dni = d;
         }
+        // hacer las validaciones en la carga?
+        do {
 
-        cout << "CLAUSTRO: ";
-        cin >> claustro;
-        cout << "ID DE DEPORTE:";
-        cin >> deporte;
+            cout << "CLAUSTRO (1: Docente, 2: Alumno, 3: No docente, 4: Graduado): ";
+            cin >> claustro;
+            if (claustro < 1 || claustro > 4) {
+                cout << "Valor de claustro no válido. Intente nuevamente." << endl;
+                system("pause");
+                system("cls");
+            }
+        } while (claustro < 1 || claustro > 4);
+
+
+        do {
+            cout << "ID DE DEPORTE (entre 1 y 10): ";
+            cin >> deporte;
+            if (deporte < 1 || deporte > 10) {
+                cout << "Valor de deporte no válido. Intente nuevamente." << endl;
+            }
+        } while (deporte < 1 || deporte > 10);
         cout << "ID EQUIPO: ";
         cin >> numEquipo;
         cout << "NOMBRE:";
@@ -90,6 +111,11 @@ public:
         }
         cout << "VALOR DE LA MATRICULA: ";
         cin >> matricula;
+        if (matricula < 0) {
+            cout << "Valor de matrícula no válido. Registro no cargado." << endl;
+            estado = false;
+            return;
+        }
         estado = true;
     };
 
@@ -196,3 +222,11 @@ bool ArchivoJugadores::modificarRegistro(int pos, Jugador reg){
 
 
 #endif // JUGADOR_H_INCLUDED
+
+
+
+
+
+
+
+    // Función adicional para verificar si el DNI ya existe en el archivo
