@@ -1,6 +1,7 @@
 #ifndef JUGADOR_H_INCLUDED
 #define JUGADOR_H_INCLUDED
 #include "deporte.h"
+#include "equipo.h"
 class Jugador
 {
 private:
@@ -73,13 +74,12 @@ public:
             dni = d;
         }
         // cambiar a while?
-        
         do {
 
             cout << "CLAUSTRO (1: Docente, 2: Alumno, 3: No docente, 4: Graduado): ";
             cin >> claustro;
             if (claustro < 1 || claustro > 4) {
-                cout << "Valor de claustro no válido. Intente nuevamente." << endl;
+                cout << "Valor de claustro no valido. Intente nuevamente." << endl;
                 system("pause");
                 system("cls");
             }
@@ -94,6 +94,11 @@ public:
 
         cout << "ID EQUIPO: ";
         cin >> numEquipo;
+        if (!idEquipoExiste(numEquipo)) {
+            cout << "El ID de equipo ingresado no existe. Registro no cargado." << endl;
+            estado = false;
+            return;
+        }
         cout << "NOMBRE:";
         cargarCadena(nombre, 29);
         cout << "APELLIDO:";
@@ -105,14 +110,14 @@ public:
         cout << "FECHA INSCRIPCION:";
         inscripcion.Cargar();
         if (inscripcion.getAnio() == 0 || inscripcion.getMes() == 0 || inscripcion.getDia() == 0) {
-            cout << "Fecha de inscripción incorrecta. Registro no cargado." << endl;
+            cout << "Fecha de inscripcion incorrecta. Registro no cargado." << endl;
             estado = false;  
             return;
         }
         cout << "VALOR DE LA MATRICULA: ";
         cin >> matricula;
         if (matricula < 0) {
-            cout << "Valor de matrícula no válido. Registro no cargado." << endl;
+            cout << "Valor de matricula no valido. Registro no cargado." << endl;
             estado = false;
             return;
         }
@@ -139,6 +144,11 @@ public:
         ArchivoDeportes archivo("deportes.dat");
         return archivo.buscarRegistro(idDeporte) >= 0;
     }
+
+
+    bool idEquipoExiste(int idEquipo) {
+        ArchivoEquipos archivo("equipos.dat");
+        return archivo.buscarRegistro(idEquipo) >= 0; }
 };
 
 

@@ -20,35 +20,42 @@ public:
     ///SETS
     void setIdEquipo(int iE){idEquipo = iE;}
     void setNombreEquipo(const char* n){strcpy(nombre, n);}
-    void setNivel(int lvl){
-        if (lvl > 0 && lvl < 4){
+    void setNivel(int lvl) {
+        if (lvl >= 1 && lvl <= 3) {
             nivel = lvl;
+        } else {
+            cout << "Nivel no valido. Debe ser 1 (principiante), 2 (intermedio) o 3 (avanzado)." << endl;
         }
     }
     void setEstado(bool e){estado = e;}
 
-    void Cargar(int idE = 0){
-        if(idEquipo == idE){
-            cout<< "INGRESAR ID DE EQUIPO: ";
-            cin>> idEquipo;
+    void Cargar(int idE = 0) {
+        // if (idEquipo == idE) {
+        //     cout << "INGRESAR ID DE EQUIPO: ";
+        //     cin >> idEquipo;
+        // } else {
+        //     idEquipo = idE;
+        // }
+        cout << "NOMBRE DEL EQUIPO: ";
+        cargarCadena(nombre, 29);
+
+        cout << "NIVEL (1: Principiante, 2: Intermedio, 3: Avanzado): ";
+        cin >> nivel;
+        if (nivel < 1 || nivel > 3) {
+            cout << "Nivel no valido. Registro no cargado." << endl;
+            estado = false;
+            return;
         }
-        else{
-            idEquipo = idE;
-        }
-        cout<< "NOMBRE DEL EQUIPO:";
-        cin>>nombre;
-        cout<< "NIVEL";
-        cin>>nivel;
+
         estado = true;
     }
 
-    void Mostrar(){
-        if(estado == true){
-        cout<< "------------------------------------------"<<endl;
-        cout<<endl;
-        cout<< "ID DE EQUIPO: "<< idEquipo<<endl;
-        cout<< "NOMBRE DEL EQUIPO: "<< nombre<<endl;
-        cout<< "NIVEL: " << nivel<<endl;
+    void Mostrar() {
+        if (estado == true) {
+            cout << "------------------------------------------" << endl;
+            cout << "ID DE EQUIPO: " << idEquipo << endl;
+            cout << "NOMBRE DEL EQUIPO: " << nombre << endl;
+            cout << "NIVEL: " << nivel << endl;
         }
     }
 };
@@ -82,6 +89,16 @@ public:
         fclose(p);
         return tam/sizeof(Equipo);
     }
+    
+        int obtenerUltimoId() {
+        FILE* p = fopen(nombre, "rb");
+        if (p == NULL) return 0;
+        fseek(p, 0, SEEK_END);
+        int tam = ftell(p);
+        fclose(p);
+        return tam / sizeof(Equipo);
+    }
+
     bool grabarRegistro(Equipo reg){
         FILE *p;
         p=fopen(nombre, "ab");

@@ -64,27 +64,23 @@ void menuEquipos(){
 // }
 
 
-void agregarEquipo(){
+void agregarEquipo() {
     Equipo reg;
     ArchivoEquipos archiE("equipos.dat");
-    int id;
-    cout<< "ID DE EQUIPO: ";
-    cin>> id;
-    int pos = archiE.buscarRegistro(id);
-    if(pos == -1){
-        reg.Cargar(id);
+    int id = archiE.obtenerUltimoId() + 1;
+    cout << "ID DE EQUIPO: " << id << endl;
+    reg.setIdEquipo(id);
+    reg.Cargar(id);
+    if (reg.getEstado()) { 
         bool agregar = archiE.grabarRegistro(reg);
-        if(agregar == true){
-            cout<< "REGISTRO AGREGADO";
+        if (agregar) {
+            cout << "Registro agregado" << endl;
+        } else {
+            cout << "No se pudo agregar el registro" << endl;
         }
-        else{
-            cout<< "no se pudo agregar el registro"<<endl;
-        }
+    } else {
+        cout << "Registro no valido. No se agrega." << endl;
     }
-    else{
-        cout<< "YA EXISTE UN EQUIPO CON ESE NUEMERO DE ID"<<endl;
-    }
-
 }
 bool listarPorIdEquipo(){
     ArchivoEquipos archiE("equipos.dat");
