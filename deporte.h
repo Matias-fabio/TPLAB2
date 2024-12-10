@@ -1,6 +1,9 @@
 #ifndef DEPORTE_H_INCLUDED
 #define DEPORTE_H_INCLUDED
 
+
+
+
 class Deporte{
     private:
         int idDeporte; // autoIncrementable
@@ -36,16 +39,26 @@ class Deporte{
         Fecha getFechaOrigen(){return origen;}
         bool getEstado(){return estado;}
 
-        void Cargar(){
-            cout<< "Nombre:";
-            cargarCadena(nombre,29);
-            cout<< "Tipo de deporte:";
-            cin>> tipoDeporte;
-            cout<< "Fecha de origen:";
-            origen.Cargar();
-            estado = true;
+    void Cargar() {
+        cout << "Nombre: ";
+        cargarCadena(nombre, 29);
+        cout << "Tipo de deporte (1-21): ";
+        cin >> tipoDeporte;
+        if (tipoDeporte < 1 || tipoDeporte > 21) {
+            cout << "El tipo de deporte ingresado no existe." << endl;
+            estado = false;
+            return;
+        }
+        cout << "Fecha de origen: ";
+        origen.Cargar();
+        if (origen.getAnio() < 1800 || origen.getAnio() > 2024) {
+            cout << "Fecha ingresada fuera de rango." << endl;
+            estado = false;
+            return;
         }
 
+        estado = true;
+    }
         void Mostrar(){
             if(estado == true){
                 cout<< "ID de deporte: "<<idDeporte<<endl;
@@ -87,6 +100,15 @@ public:
         int tam= ftell(p);
         fclose(p);
         return tam/sizeof(Deporte);
+    }
+
+        int obtenerUltimoId() {
+        FILE* p = fopen(nombre, "rb");
+        if (p == NULL) return 0;
+        fseek(p, 0, SEEK_END);
+        int tam = ftell(p);
+        fclose(p);
+        return tam / sizeof(Deporte);
     }
 
     bool grabarRegistro(Deporte reg){

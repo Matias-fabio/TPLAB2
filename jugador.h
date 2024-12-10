@@ -1,6 +1,6 @@
 #ifndef JUGADOR_H_INCLUDED
 #define JUGADOR_H_INCLUDED
-
+#include "deporte.h"
 class Jugador
 {
 private:
@@ -72,7 +72,8 @@ public:
         } else {
             dni = d;
         }
-        // hacer las validaciones en la carga?
+        // cambiar a while?
+        
         do {
 
             cout << "CLAUSTRO (1: Docente, 2: Alumno, 3: No docente, 4: Graduado): ";
@@ -83,15 +84,14 @@ public:
                 system("cls");
             }
         } while (claustro < 1 || claustro > 4);
+        cout << "ID DE DEPORTE (entre 1 y 10): ";
+        cin >> deporte;
+        if (!idDeporteExiste(deporte)) {
+            cout << "El ID de deporte ingresado no existe. Registro no cargado." << endl;
+            estado = false;
+            return;
+        }
 
-
-        do {
-            cout << "ID DE DEPORTE (entre 1 y 10): ";
-            cin >> deporte;
-            if (deporte < 1 || deporte > 10) {
-                cout << "Valor de deporte no válido. Intente nuevamente." << endl;
-            }
-        } while (deporte < 1 || deporte > 10);
         cout << "ID EQUIPO: ";
         cin >> numEquipo;
         cout << "NOMBRE:";
@@ -134,6 +134,11 @@ public:
             cout<< "VALOR DE LA MATRICULA: $ "<<matricula<<endl;
        }
    }
+
+       bool idDeporteExiste(int idDeporte) {
+        ArchivoDeportes archivo("deportes.dat");
+        return archivo.buscarRegistro(idDeporte) >= 0;
+    }
 };
 
 
@@ -222,11 +227,3 @@ bool ArchivoJugadores::modificarRegistro(int pos, Jugador reg){
 
 
 #endif // JUGADOR_H_INCLUDED
-
-
-
-
-
-
-
-    // Función adicional para verificar si el DNI ya existe en el archivo

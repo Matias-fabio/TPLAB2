@@ -2,7 +2,7 @@
 #define MENUDEPORTES_H_INCLUDED
 
 void menuDeportes();
-void agregarDeporte(int id);
+void agregarDeporte();
 bool listarPorID();
 void listarTodosLosDeportes();
 bool modificarAnioOrigen();
@@ -28,7 +28,7 @@ void menuDeportes(){
         cin>> opc;
         system("cls");
         switch(opc){
-        case 1: agregarDeporte(id);
+        case 1: agregarDeporte();
                 id++;
             break;
         case 2:listarPorID();
@@ -52,31 +52,25 @@ void menuDeportes(){
     return ;
 }
 
-
-
-void agregarDeporte(int id){
+void agregarDeporte() {
     Deporte reg;
     ArchivoDeportes archiD("deportes.dat");
-    cout<< "ID DE DEPORTE: ";
-    id++;
-    cout<< id<<endl;
-    int pos = archiD.buscarRegistro(id);
-    if(pos == -1){
-        reg.setIdDeporte(id);
-        reg.Cargar();
+    int id = archiD.obtenerUltimoId() + 1;
+    cout << "ID DE DEPORTE: " << id << endl;
+    reg.setIdDeporte(id);
+    reg.Cargar();
+    if (reg.getEstado()) {
         bool agregar = archiD.grabarRegistro(reg);
-        if(agregar == true){
-            cout<< "REGISTRO AGREGADO";
+        if (agregar) {
+            cout << "Registro agregado" << endl;
+        } else {
+            cout << "No se pudo agregar el registro" << endl;
         }
-        else{
-            cout<< "no se pudo agregar el registro"<<endl;
-        }
+    } else {
+        cout << "Registro no válido. No se agrega." << endl;
     }
-    else{
-        cout<< "YA EXISTE UN DEPORTE CON ESE NUEMERO DE ID"<<endl;
-    }
-
 }
+
 bool listarPorID(){
     ArchivoDeportes archiD("deportes.dat");
     int idBuscar;
