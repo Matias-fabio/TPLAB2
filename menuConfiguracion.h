@@ -10,6 +10,8 @@ bool restaurarArchivoJugadores();
 bool restaurarArchivoDeportes();
 bool copiaSeguridadEquipos();
 bool copiaSeguridadTipoDeporte();
+bool restaurarArchivoEquipos();
+bool restaurarArchivoTipoDeporte();
 
 
 
@@ -23,9 +25,10 @@ void menuConfiguracion(){
         cout<< "2. COPIA DE SEGURIDAD DEL ARCHIVO DE DEPORTES"<<endl;
         cout<< "3. RESTAURAR EL ARCHIVO DE JUGADORES"<<endl;
         cout<< "4. RESTAURAR EL ARCHIVO DE DEPORTES"<<endl;
-        cout<< "5. ESTABLECER DATOS DE INICIO"<<endl;
+        cout<< "5. RESTAURAR EL ARCHIVO DE EQUIPOS"<<endl;
         cout<< "6. COPIA DE SEGURIDAD DEL ARCHIVO DE EQUIPOS"<<endl;
         cout<< "7. COPIA DE SEGURIDAD DEL ARCHIVO DE TIPO DE DEPORTES"<<endl;
+        cout<< "8. RESTAURAR EL ARCHIVO TIPO DE DEPORTES"<<endl;
         cout<< "------------------------"<<endl;
         cout<< "0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
@@ -41,11 +44,13 @@ void menuConfiguracion(){
             break;
         case 4: restaurarArchivoDeportes();
             break;
-        case 5:
+        case 5:restaurarArchivoEquipos();
             break;
         case 6:copiaSeguridadEquipos();
             break;
         case 7:copiaSeguridadTipoDeporte();
+            break;
+        case 8:restaurarArchivoTipoDeporte();
             break;
         case 0: return;
             break;
@@ -149,8 +154,6 @@ bool restaurarArchivoDeportes(){
     fclose(pBak);
     fclose(pDep);
     return true;
-    
-
 }
 
 bool copiaSeguridadEquipos(){
@@ -200,12 +203,49 @@ bool copiaSeguridadTipoDeporte(){
 
     fclose(pBak);
     fclose(pTd);
+    cout<< "Copia de seguridad realizada con exito"<<endl;
     return true;
 
 }
 
+bool restaurarArchivoEquipos(){
+    Equipo obj;
+    FILE *pEq, *pBak;
+    pEq = fopen("equipos.dat", "wb");
+    if(pEq == NULL) return false;
+    pBak = fopen("equipos.bkp", "rb");
+    if(pBak == NULL){
+        cout<< "no se puede crear el archivo"<<endl;
+        fclose(pEq);
+        return false;
+    }
+    while(fread(&obj, sizeof obj, 1, pBak) == 1){
+        fwrite(&obj , sizeof obj, 1 , pEq);
+    }
+    fclose(pBak);
+    fclose(pEq);
+    return true;
+    
+}
 
-
+bool restaurarArchivoTipoDeporte(){
+    TipoDeporte obj;
+    FILE *pTd, *pBak;
+    pTd = fopen("tipoDeportes.dat", "wb");
+    if(pTd == NULL) return false;
+    pBak = fopen("tipoDeportes.bkp", "rb");
+    if(pBak == NULL){
+        cout<< "no se puede crear el archivo"<<endl;
+        fclose(pTd);
+        return false;
+    }
+    while(fread(&obj, sizeof obj, 1, pBak) == 1){
+        fwrite(&obj , sizeof obj, 1 , pTd);
+    }
+    fclose(pBak);
+    fclose(pTd);
+    return true;
+}
 
 
 
