@@ -107,12 +107,12 @@ public:
         cargarCadena(email, 29);
         cout << "TELEFONO:";
         cargarCadena(telefono, 29);
-        cout << "FECHA INSCRIPCION:";
+        cout << "FECHA INSCRIPCION (debe ser en 2024): "<<endl;
         inscripcion.Cargar();
-        if (inscripcion.getAnio() == 0 || inscripcion.getMes() == 0 || inscripcion.getDia() == 0) {
-            cout << "Fecha de inscripcion incorrecta. Registro no cargado." << endl;
-            estado = false;  
-            return;
+        if (inscripcion.getAnio() != 2024) {
+            // cout << "El anio de inscripcion debe ser 2024. Registro no cargado." << endl;
+            estado = false;
+            return; 
         }
         cout << "VALOR DE LA MATRICULA: ";
         cin >> matricula;

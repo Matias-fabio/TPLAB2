@@ -14,7 +14,7 @@ private:
     bool esFechaValida(int d, int m, int a) {
         if (m < 1 || m > 12) return false;
         if (d < 1 || d > 31 ) return false;
-        if (a < 2024) return false;
+        if (a < 1800 || a > 2024) return false;
 
         if (m == 2) {
             if (esBisiesto(a)) {
@@ -57,7 +57,7 @@ public:
             cout << mes << "/";
             cout << anio << endl;
         } else {
-            cout << "Fecha no válida" << endl;
+            cout << "Fecha no valida" << endl;
         }
     }
 
@@ -85,7 +85,7 @@ public:
         if (esFechaValida(dia, mes, a)) {
             anio = a;
         } else {
-            cout << "El año ingresado es incorrecto" << endl;
+            cout << "El anio ingresado es incorrecto" << endl;
         }
     }
 };

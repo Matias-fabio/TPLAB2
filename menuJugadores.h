@@ -66,10 +66,10 @@ void agregarJugador() {
                 cout << "No se pudo agregar el registro" << endl;
             }
         } else {
-            cout << "Registro no válido. No se agrega." << endl;
+            cout << "Registro no valido. No se agrega." << endl;
         }
     } else {
-        cout << "YA EXISTE UN JUGADOR CON ESE NÚMERO DE DNI" << endl;
+        cout << "YA EXISTE UN JUGADOR CON ESE NUMERO DE DNI" << endl;
     }
 }
 

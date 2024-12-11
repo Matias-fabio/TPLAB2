@@ -104,9 +104,9 @@ bool modificarAnioOrigen(){
     Deporte reg;
     int idBuscar;
     int anioBuscar;
-    cout<< "INGRESAR ID :"<<endl;
+    cout<< "INGRESAR ID :";
     cin>> idBuscar;
-    cout<< "INGRESAR FECHA :"<<endl;
+    cout<< "INGRESAR ANIO DE ORIGEN:";
     cin>> anioBuscar;
     int pos = archiD.buscarRegistroYOrigen(idBuscar, anioBuscar);
     if(pos == -1){
@@ -115,17 +115,29 @@ bool modificarAnioOrigen(){
     }
 
     reg = archiD.leerRegistro(pos);
+
     int anioNuevo;
-    Fecha fmod;
-    cout<< "MODIFICAR ANIO DE ORIGEN:"<<endl;
+    cout<< "MODIFICAR ANIO DE ORIGEN (1800-2024):";
     cin>> anioNuevo;
-    fmod.setDia(reg.getFechaOrigen().getDia());
-    fmod.setMes(reg.getFechaOrigen().getMes());
+    if (anioNuevo < 1800 || anioNuevo > 2024) {
+        cout << "El anio ingresado estA fuera de rango. Intente nuevamente." << endl;
+        return false;
+    }
+
+    Fecha fmod = reg.getFechaOrigen();
     fmod.setAnio(anioNuevo);
     reg.setFechaOrigen(fmod);
     bool seModifico = archiD.modificarRegistro(pos, reg);
+
+    if (seModifico) {
+        cout << "Anio de origen modificado correctamente." << endl;
+    } else {
+        cout << "No se pudo modificar el anio de origen." << endl;
+    }
+
     return seModifico;
 }
+
 bool elimiarDeporte(){
     ArchivoDeportes archiD("deportes.dat");
     int idBuscar;
