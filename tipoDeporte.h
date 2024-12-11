@@ -22,19 +22,23 @@ public:
         }
     }
     void setEstado(bool e){estado = e;}
-
-    void Cargar(int idT = 0){
-        if(IdTipo == idT){
-            cout<< "ID TIPO: ";
-            cin>> IdTipo;
-        }
-        else{
-            IdTipo = idT;
-        }
-        cout<< "NOMBRE TIPO: ";
+    void Cargar(int idT = 0) {
+        // if (IdTipo == idT) {
+        //     cout << "ID TIPO: ";
+        //     cin >> IdTipo;
+        // } else {
+        //     IdTipo = idT;
+        // }
+        cout << "NOMBRE TIPO: ";
         cargarCadena(nombreTipo, 29);
-        cout<< "NIVEL DE DIFICULTAD: ";
-        cin>> nivelDificultad;
+        cout << "NIVEL DE DIFICULTAD (1-8): ";
+        cin >> nivelDificultad;
+        if (nivelDificultad < 1 || nivelDificultad > 8) {
+            cout << "Nivel de dificultad no válido. Registro no cargado." << endl;
+            estado = false;
+            return;
+        }
+
         estado = true;
     }
     void Mostrar(){
@@ -74,6 +78,21 @@ public:
         fclose(p);
         return tam/sizeof(TipoDeporte);
     }
+
+    int obtenerUltimoId() {
+        FILE* p = fopen(nombre, "rb");
+        if (p == NULL) return 0;
+        fseek(p, 0, SEEK_END);
+        if (ftell(p) == 0) {
+            fclose(p);
+            return 0; // No hay registros
+        }
+        int pos = (ftell(p) / sizeof(TipoDeporte)) - 1;
+        fclose(p);
+        TipoDeporte ultimo = leerRegistro(pos);
+        return ultimo.getIdTipo();
+    }
+    
     bool grabarRegistro(TipoDeporte reg){
         FILE *p;
         p=fopen(nombre, "ab");
@@ -103,6 +122,7 @@ bool ArchivoTipoDeportes::listarTipoDeporte(){
     fclose(p);
     return true;
 }
+
 
 int ArchivoTipoDeportes::buscarRegistro(int id){
     TipoDeporte reg;
@@ -148,3 +168,9 @@ bool ArchivoTipoDeportes::modificarRegistro(int pos, TipoDeporte reg){
 
 
 #endif // TIPODEPORTE_H_INCLUDED
+
+
+
+
+
+

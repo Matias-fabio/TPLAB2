@@ -68,28 +68,25 @@ void menuTipoDeporte(){
 //     }
 // }
 
-void agregarTipoDeporte(){
+void agregarTipoDeporte() {
     TipoDeporte reg;
     ArchivoTipoDeportes archiTD("tipoDeportes.dat");
-    int id;
-    cout<< "ID DE TIPO: ";
-    cin>> id;
-    int pos = archiTD.buscarRegistro(id);
-    if(pos == -1){
-        reg.Cargar(id);
+    int id = archiTD.obtenerUltimoId() + 1;
+    cout << "ID DE TIPO: " << id << endl;
+    reg.setIdTipo(id);
+    reg.Cargar(id);
+    if (reg.getEstado()) { 
         bool agregar = archiTD.grabarRegistro(reg);
-        if(agregar == true){
-            cout<< "REGISTRO AGREGADO";
+        if (agregar) {
+            cout << "Registro agregado" << endl;
+        } else {
+            cout << "No se pudo agregar el registro" << endl;
         }
-        else{
-            cout<< "no se pudo agregar el registro"<<endl;
-        }
+    } else {
+        cout << "Registro no válido. No se agrega." << endl;
     }
-    else{
-        cout<< "YA EXISTE UN TIPO CON ESE NUEMERO DE ID"<<endl;
-    }
-
 }
+
 bool listarTipoPorID(){
     ArchivoTipoDeportes archiTD("tipoDeportes.dat");
     int idBuscar;

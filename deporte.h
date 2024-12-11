@@ -2,7 +2,7 @@
 #define DEPORTE_H_INCLUDED
 
 
-
+#include "tipoDeporte.h"
 
 class Deporte{
     private:
@@ -44,8 +44,8 @@ class Deporte{
         cargarCadena(nombre, 29);
         cout << "Tipo de deporte (1-21): ";
         cin >> tipoDeporte;
-        if (tipoDeporte < 1 || tipoDeporte > 21) {
-            cout << "El tipo de deporte ingresado no existe." << endl;
+        if (!idTipoExiste(tipoDeporte)) {
+            cout << "El ID de tipo de deporte ingresado no existe. Registro no cargado." << endl;
             estado = false;
             return;
         }
@@ -59,7 +59,7 @@ class Deporte{
 
         estado = true;
     }
-        void Mostrar(){
+    void Mostrar(){
             if(estado == true){
                 cout<< "ID de deporte: "<<idDeporte<<endl;
                 cout<< "Nombre: "<<nombre<<endl;
@@ -70,6 +70,11 @@ class Deporte{
             }
 
         }
+    bool idTipoExiste(int idTipo) {
+        ArchivoTipoDeportes archivo("tipoDeportes.dat");
+        return archivo.buscarRegistro(idTipo) >= 0;
+    }
+
 };
 
 
